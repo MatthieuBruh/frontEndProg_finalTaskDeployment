@@ -5,10 +5,27 @@ import { Tooltip, BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
 import _ from 'lodash';
 
 function Statistics() {
-    const [data, setData] = useState([]);
+    const [actGroupedData, setActGroupedData] = useState([]);
     const [groupedData, setGroupedData] = useState([]);
 
-    const handleStats = (data) => {
+    /**
+     * Calculate the sum of the time spent on each activity
+     * @param {List of the trainings} data 
+     */
+    const handleStatsActivity = (data) => {
+        const grouped = _.groupBy(data, 'activity');
+        const result = _.map(grouped, (group, key) => ({
+            activity: key,
+            duration: _.sumBy(group, 'duration')
+        }));
+        setActGroupedData(result);
+    }
+
+    /**
+     * Calculate the average of the time spent per customer
+     * @param {List of the trainings} data 
+     */
+    const handleStatsCustomers = (data) => {
         let grouped = _.groupBy(data, 'customer');
         let groupedData = [];
         for (let key in grouped) {
@@ -47,8 +64,8 @@ function Statistics() {
                         });
                     })
                 }
-                handleStats(trainingList);
-                setData(trainingList);
+                handleStatsCustomers(trainingList);
+                handleStatsActivity(trainingList);
             })();
         })
         .catch(err => console.error(err))
@@ -59,7 +76,7 @@ function Statistics() {
             <h1>Statistics</h1>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderStyle: 'solid', width: '60%', marginBottom: 20 }}>
                 <h2>Duration per activity</h2>
-                <BarChart width={800} height={600} data={data}>
+                <BarChart width={800} height={600} data={actGroupedData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="activity" />
                     <YAxis label={{ value: 'Duration (min)', angle: -90, position: 'insideLeft' }} />

@@ -11,7 +11,7 @@ import AppMenu from './components/AppDrawer';
 import MyCalendar from './components/MyCalendar';
 import Statistics from './components/Statistics';
 
-import {Box, CssBaseline } from '@mui/material';
+import {Box, Button, CssBaseline } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import { Routes, Route } from 'react-router-dom';
@@ -98,7 +98,14 @@ function App() {
           <Route path="/trainings" element={<TrainingList />} />
           <Route path="/calendar" element={<MyCalendar />} />
           <Route path="/statistics" element={<Statistics />} />
-          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route
+            path="*"
+            element={
+              <div>
+                <h1>Welcome to trainings manager</h1>
+                <Button variant="contained" onClick={() => navigate('/')}>Go to customers</Button>
+              </div>
+            } />
         </Routes>
       </Main>
 

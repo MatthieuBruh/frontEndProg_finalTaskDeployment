@@ -17,10 +17,7 @@ import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
 
-// Import button
 import Button from '@mui/material/Button';
-// import { GridApi } from "ag-grid-community";
-
 import SaveIcon from '@mui/icons-material/Save';
 
 function CustomerList() {

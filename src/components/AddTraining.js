@@ -20,15 +20,25 @@ function AddTraining(props) {
         customer: ''
     });
 
+    /**
+     * Opens the dialog window for adding a new training
+     * setTraining is for the customer to be added to the training
+     */
     const handleClickOpen = () => {
         setTraining({...training, customer: props.data.links[0].href});
         setOpen(true);
     };
 
+    /**
+     * Closes the dialog window for adding a new training
+     */
     const handleClose = () => {
         setOpen(false);
     };
 
+    /**
+     * Save the training with the given information to the database
+     */
     const handleSave = () => {
         setTraining(currTraining => ({...currTraining, date: training.date.toISOString()}));
         props.addTraining(training);

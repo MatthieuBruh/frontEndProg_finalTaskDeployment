@@ -14,6 +14,9 @@ function EditCustomer(props) {
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState({});
 
+    /**
+     * Opens the dialog window for editing a customer.
+     */
     const handleClickOpen = () => {
         setOpen(true);
         setCustomer({
@@ -27,12 +30,17 @@ function EditCustomer(props) {
         });
     };
 
+    /**
+     * Closes the dialog window for editing a customer.
+     */
     const handleClose = () => {
         setOpen(false);
     };
 
+    /**
+     * Save the customer with the given information to the database and close the dialog window.
+     */
     const handleSave = () => {
-        console.log(props.data);
         props.updateCustomer(props.data.links[0].href, customer);
         setOpen(false);
         setCustomer({

@@ -42,6 +42,10 @@ function TrainingList() {
         { headerName: "Customer", field: "customer", sortable: true, filter: true, width: 300 },
     ]);
 
+    /**
+     * Fetches the trainings from the database and sets them to the state.
+     * Then we fetch the customer information for each training and add it to the training object.
+     */
     const fetchTrainings = () => {
         fetch(API_URL + '/trainings')
         .then(response => response.json())
@@ -71,6 +75,10 @@ function TrainingList() {
         fetchTrainings();
     }, []);
 
+    /**
+     * This function deletes the training from the database.
+     * @param {The training to delete} training 
+     */
     const deleteTraining = (training) => {
         if (window.confirm('Are you sure?')) {
             fetch(training.links[0].href, { method: 'DELETE' })
@@ -79,10 +87,17 @@ function TrainingList() {
         }
     };
 
+    /**
+     * This function is used to set the search term to the state.
+     * @param {*} event 
+     */
     const handleSearch = (event) => {
         setSearch(event.target.value);
     }
 
+    /**
+     * This const is the filtered list of trainings based on the search input.
+     */
     const filtredTrainings = trainings.filter(training => {
         return training.activity.toLowerCase().includes(search.toLowerCase());
     });

@@ -23,14 +23,23 @@ function AddCustomer(props) {
         city: ''
     });
 
+    /**
+     * Opens the dialog window for adding a new customer
+     */
     const handleClickOpen = () => {
         setOpen(true);
     };
 
+    /**
+     * Closes the dialog window for adding a new customer
+     */
     const handleClose = () => {
         setOpen(false);
     };
 
+    /**
+     * Save the customer with the given information to the database
+     */
     const handleSave = () => {
         props.saveCustomer(customer);
         setOpen(false);

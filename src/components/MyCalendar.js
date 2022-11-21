@@ -20,6 +20,13 @@ const localizer = dateFnsLocalizer({
 function MyCalendar() {
     const [events, setEvents] = useState([]);
 
+    /**
+     * Fetches all the trainings from the database.
+     * Then we fetch the customer information for each training.
+     * Then we add the customer information to the training object.
+     * Then we add the training object to the events array.
+     * Then we set the events array to the state.
+     */
     const fetchTrainings = () => {
         fetch(API_URL + '/trainings')
         .then(response => response.json())

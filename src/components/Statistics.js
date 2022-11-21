@@ -45,6 +45,14 @@ function Statistics() {
         setGroupedData(groupedData);
     };
 
+    /**
+     * Fetches all the trainings from the database.
+     * Then we fetch the customer information for each training.
+     * Then we add the customer information to the training object.
+     * Then we add the training object to the trainingList array.
+     * Then we call the handleStatsActivity function.
+     * Then we call the handleStatsCustomers function.
+     */
     useEffect(() => {
         fetch(API_URL + '/trainings')
         .then(response => response.json())

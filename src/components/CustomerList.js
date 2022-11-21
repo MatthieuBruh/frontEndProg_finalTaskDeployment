@@ -30,39 +30,25 @@ function CustomerList() {
     const [columnDefs] = useState([
         {
             headerName: "Actions",
-            children: [
-                {
-                    cellRenderer: params => {
-                        return (
-                            <IconButton
-                                size="small"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                onClick={() => deleteCustomer(params.data)}>
-                                <Delete color="error" />
-                            </IconButton>
-                        );
-                    },
-                    width: 50,
-                },
-                {
-                    cellRenderer: params => {
-                        return (
-                            <EditCustomer updateCustomer={updateCustomer} data={params.data} />
-                        );
-                    },
-                    width: 50,
-                },
-                {
-                    cellRenderer: params => {
-                        return (
-                            <AddTraining data={params.data} addTraining={addTraining} />
-                        );
-                    },
-                    width: 170,
-                }
-            ]
+            width: 120,
+            cellRenderer: params => <IconButton
+                                        size="small"
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="menu"
+                                        onClick={() => deleteCustomer(params.data)}>
+                                        <Delete color="error" />
+                                    </IconButton>
+        },
+        {
+            headerName: "",
+            width: 70,
+            cellRenderer: params => <EditCustomer updateCustomer={updateCustomer} data={params.data} />
+        },
+        {
+            headerName: "",
+            width: 150,
+            cellRenderer: params => <AddTraining data={params.data} addTraining={addTraining} />
         },
         {field: 'firstname', headerName: 'First name', sortable: true, filter: true },
         {field: 'lastname', headerName: 'Last name', sortable: true, filter: true },
